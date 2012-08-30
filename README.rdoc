@@ -8,8 +8,8 @@ A gem that provides an interface to Microsoft's Bing search API.
 Get a Windows Azure Data Marketplace account at https://datamarket.azure.com/,
 then setup an Account Key at https://datamarket.azure.com/account/keys.
 
-Finally, subscribe to Bing Search API - Web Results Only Data at
-https://datamarket.azure.com/dataset/bing/searchweb.
+Finally, subscribe to Bing Search API at
+https://datamarket.azure.com/dataset/bing/search.
 
   require 'rubygems'
   require 'rbing'
