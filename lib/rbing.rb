@@ -81,7 +81,7 @@ class RBing
   include HTTParty
 
   attr_accessor :instance_options, :app_id
-  base_uri "https://api.datamarket.azure.com/Data.ashx/Bing/SearchWeb/v1/Web"
+  base_uri "https://api.datamarket.azure.com/Data.ashx/Bing/Search/v1"
 
   BASE_OPTIONS = [:version, :market, :adult, :query, :appid]
 
@@ -110,7 +110,7 @@ class RBing
   # issues a search for +query+ in +source+
   #
   def search(source, query, options={})
-    rsp = self.class.get("", options_for(source, query, options))
+    rsp = self.class.get("/#{source.camelize}", options_for(source, query, options))
     if rsp.response.is_a?(Net::HTTPOK)
       ResponseData.new(rsp['d']) if rsp
     else
