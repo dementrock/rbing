@@ -81,7 +81,7 @@ class RBing
   include HTTParty
 
   attr_accessor :instance_options, :app_id
-  base_uri "https://api.datamarket.azure.com/Data.ashx/Bing/SearchWeb/v1/Web"
+  base_uri "https://api.datamarket.azure.com/Bing/Search/"
 
   BASE_OPTIONS = [:version, :market, :adult, :query, :appid]
 
