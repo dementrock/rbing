@@ -4,27 +4,27 @@ require "yaml"
 # Usage:
 #
 #  bing = RBing.new("YOURAPPID")
-#  
+#
 #  rsp = bing.web("ruby")
 #  puts rsp.results[0].title
 #  => "Ruby (programming language) - Wikipedia, the free encyclopedia"
-#  
+#
 #  rsp = bing.web("ruby", :site => "github.com")
 #  puts rsp.results[0].url
 #  => "http://github.com/vim-ruby/vim-ruby/tree/master"
-#  
+#
 #  rsp = bing.web("ruby", :site => ["github.com", "rubyforge.org"])
 #  puts rsp.results[0].url
 #  => "http://rubyforge.org/"
-#  
+#
 #  rsp = bing.news("search engines")
 #  puts rsp.results[0].title
 #  => "Microsoft Bing more popular than Yahoo"
-#  
+#
 #  rsp = bing.spell("coincidance")
 #  puts rsp.results[0].value
 #  => "coincidence"
-#  
+#
 #  rsp = bing.instant_answer("How many rods in a furlong?")
 #  puts rsp.results[0].instant_answer_specific_data.encarta.value
 #  => "1 furlong = 40 rods"
@@ -81,7 +81,7 @@ class RBing
   include HTTParty
 
   attr_accessor :instance_options, :app_id
-  base_uri "https://api.datamarket.azure.com/Bing/Search/"
+  base_uri "https://api.datamarket.azure.com/Bing/Search/v1/Composite"
 
   BASE_OPTIONS = [:version, :market, :adult, :query, :appid]
 
@@ -133,7 +133,7 @@ private
   def build_query(query, options={})
     queries = {}
     queries[:Query] = "'#{query}'"
-    
+
     QUERY_KEYWORDS.each do |kw|
       next unless options[kw]
       if options[kw].is_a? Array
@@ -168,7 +168,7 @@ private
       opts.delete(reserved_option)
     end
     opts.merge!('$format' => 'JSON')
-    
+
     authentication_options = {:basic_auth => {
       :username => '',
       :password => (app_id || user_app_id)
